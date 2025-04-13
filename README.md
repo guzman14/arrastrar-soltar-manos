@@ -22,4 +22,10 @@ Permitir que el usuario pueda:
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/TU_USUARIO/arrastrar-soltar-manos.git
+git clone https://github.com/guzman14/arrastrar-soltar-manos.git
+
+
+## 🚀 VIDEO EXPLICATIVO
+
+https://youtu.be/LMJsUKO7ums
+
