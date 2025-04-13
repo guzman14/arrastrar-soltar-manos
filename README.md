@@ -17,6 +17,10 @@ Permitir que el usuario pueda:
 - MediaPipe
 - Git + GitHub
 
+## 🚀 VIDEO EXPLICATIVO
+
+https://youtu.be/LMJsUKO7ums
+
 ## 🚀 Cómo ejecutar
 
 1. Clona el repositorio:
@@ -25,7 +29,5 @@ Permitir que el usuario pueda:
 git clone https://github.com/guzman14/arrastrar-soltar-manos.git
 
 
-## 🚀 VIDEO EXPLICATIVO
 
-https://youtu.be/LMJsUKO7ums
 
