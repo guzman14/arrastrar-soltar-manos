@@ -4,7 +4,7 @@ import math
 
 # Cargar imágenes
 pizza_img = cv2.imread("images/pizza.png", cv2.IMREAD_UNCHANGED)
-personaje_img = cv2.imread("images/personaje.png", cv2.IMREAD_UNCHANGED)
+personaje_img = cv2.imread("images/imagen.png", cv2.IMREAD_UNCHANGED)
 
 # Redimensionar imágenes si son muy grandes
 pizza_img = cv2.resize(pizza_img, (100, 100))
@@ -27,13 +27,19 @@ def distance(p1, p2):
     return math.hypot(p2[0] - p1[0], p2[1] - p1[1])
 
 def overlay_image(bg, overlay, x, y):
-    h, w, _ = overlay.shape
-    alpha_overlay = overlay[:, :, 3] / 255.0
-    alpha_bg = 1.0 - alpha_overlay
+    h, w = overlay.shape[:2]
 
-    for c in range(3):
-        bg[y:y+h, x:x+w, c] = (alpha_overlay * overlay[:, :, c] +
-                               alpha_bg * bg[y:y+h, x:x+w, c])
+    # Si la imagen tiene canal alfa (transparencia)
+    if overlay.shape[2] == 4:
+        b, g, r, a = cv2.split(overlay)
+        overlay_rgb = cv2.merge((b, g, r))
+        mask = cv2.merge((a, a, a)) / 255.0
+        roi = bg[y:y+h, x:x+w]
+        blended = roi * (1 - mask) + overlay_rgb * mask
+        bg[y:y+h, x:x+w] = blended.astype("uint8")
+    else:
+        # Si NO tiene canal alfa, simplemente la sobrepone
+        bg[y:y+h, x:x+w] = overlay
 
 while True:
     success, frame = cap.read()
